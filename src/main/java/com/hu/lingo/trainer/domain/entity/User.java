@@ -15,8 +15,9 @@ public class User extends BaseEntity {
     @Column(name = "role")
     private String role;
 
-    /** Constructor for creation **/
-    public User(){}
+    public User(){
+        // Constructor for creation
+    }
 
     public User(String username, String password, String role) {
         this.username = username;
