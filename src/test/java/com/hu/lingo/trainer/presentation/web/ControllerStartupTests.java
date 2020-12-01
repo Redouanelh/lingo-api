@@ -11,12 +11,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ControllerStartupTests {
 
     @Autowired
-    private TestController testController;
+    private UserController userController;
 
     @Test
     @DisplayName("starts TestController")
-    void startsTestController() {
-        assertThat(testController).isNotNull();
+    void startsUserController() {
+        assertThat(userController).isNotNull();
     }
 
 }
