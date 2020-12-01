@@ -20,9 +20,7 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
+    - name: Setting up variables
+      run: export DB_URL=${{ secrets.DB_URL }}
     - name: Build with Maven
-      env:
-        DB_URL:  ${{ secrets.DB_URL }}
-        DB_USER: ${{ secrets.DB_USER }}
-        DB_PASS: ${{ secrets.DB_PASS }}
       run: mvn -B package --file pom.xml
