@@ -1,4 +1,4 @@
-package com.hu.lingo.trainer.architecture;
+package com.hu.lingo.config.architecture;
 
 import com.tngtech.archunit.junit.AnalyzeClasses;
 import com.tngtech.archunit.junit.ArchTest;
@@ -6,8 +6,8 @@ import com.tngtech.archunit.lang.ArchRule;
 
 import static com.tngtech.archunit.library.Architectures.layeredArchitecture;
 
-@AnalyzeClasses(packages = "com.hu.lingo.trainer")
-class LayeredArchitectureTest {
+@AnalyzeClasses(packages = "com.hu.lingo.config")
+public class LayeredArchitectureTest {
     // TODO: uncomment dit nadat de er in iedere layer een klasse zit.
 
     /*
