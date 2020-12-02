@@ -21,7 +21,7 @@ jobs:
       with:
         java-version: 11
     - name: Build with Maven
-      run: mvn -B package -DDB_URL=$DB_URL -DDB_USER=$DB_USER -DDB_PASS=$DB_PASS --file pom.xml
+      run: mvn -B package --file pom.xml
       env:
         DB_URL: ${{ secrets.DB_URL }} 
         DB_USER: ${{ secrets.DB_USER }}
