@@ -33,4 +33,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify -DDB_URL=${{ secrets.DB_URL }} -DDB_USER=${{ secrets.DB_USER }} -DDB_PASS=${{ secrets.DB_PASS }} org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+        run: mvn -B verify -DDB_URL=${{ secrets.DB_URL }} -DDB_USER=${{ secrets.DB_USER }} -DDB_PASS=${{ secrets.DB_PASS }} org.jacoco:jacoco-maven-plugin:prepare-agent org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
