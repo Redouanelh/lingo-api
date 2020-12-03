@@ -32,6 +32,13 @@ class LingoWordFilterTest {
         assertEquals(shouldAccept, accepts);
     }
 
+    @ParameterizedTest
+    @MethodSource("provideWordsOfVaryingSymbol")
+    void rejects_words_with_symbols(String word, boolean shouldAccept) {
+        boolean accepts = this.filter.verify(word);
+        assertEquals(shouldAccept, accepts);
+    }
+
     static Stream<Arguments> provideWordsOfVaryingLength() {
         return Stream.of(
                 Arguments.of("steen", true), // 5 letter
@@ -50,6 +57,19 @@ class LingoWordFilterTest {
                 Arguments.of("steeN", false),
                 Arguments.of("stEen", false),
                 Arguments.of("STEEN", false)
+        );
+    }
+
+    static Stream<Arguments> provideWordsOfVaryingSymbol() {
+        return Stream.of(
+                Arguments.of("steen", true),
+                Arguments.of("st:,n", false),
+                Arguments.of("stéén", false),
+                Arguments.of("ste n", false),
+                Arguments.of("p̣̝̔̂͝i̻͚ͅz̰̟̖̩̩̘z̖̭̞͉͍̕a͖͛̓͘", false),
+                Arguments.of("st@#$", false),
+                Arguments.of("st-=+", false),
+                Arguments.of("st33n", false)
         );
     }
 }
