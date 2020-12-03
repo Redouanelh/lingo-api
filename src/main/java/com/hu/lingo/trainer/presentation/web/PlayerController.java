@@ -3,6 +3,7 @@ package com.hu.lingo.trainer.presentation.web;
 import com.hu.lingo.trainer.application.PlayerService;
 import com.hu.lingo.trainer.domain.entity.Player;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,5 +22,12 @@ public class PlayerController {
     @GetMapping("/players")
     public List<Player> allUsers() {
         return this.playerService.allUsers();
+    }
+
+    @PostMapping("/dummy")
+    public Boolean addDummy() {
+        Player dummy = new Player("dummy", "dummy", "dummy");
+
+        return this.playerService.save(dummy);
     }
 }
