@@ -12,7 +12,7 @@ public abstract class BaseService <ENTITY extends BaseEntity> implements IBaseSe
     // Each service has a repository, entity and ENTITY object
     private final JpaRepository<ENTITY, Integer> repository;
 
-    public BaseService(JpaRepository<ENTITY, Integer> repository) {
+    protected BaseService(JpaRepository<ENTITY, Integer> repository) {
         this.repository = repository;
 
     }

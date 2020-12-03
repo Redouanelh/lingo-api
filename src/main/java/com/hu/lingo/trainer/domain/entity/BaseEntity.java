@@ -10,7 +10,7 @@ public abstract class BaseEntity {
     private Integer id;
 
     /** Empty constructor for creation **/
-    public BaseEntity(){}
+    protected BaseEntity(){}
 
     /************ Setters & Getters ************/
     public Integer getId() { return id; }
