@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ControllerStartupTests {
 
     @Autowired
-    private UserController userController;
+    private PlayerController userController;
 
     @Test
     @DisplayName("starts TestController")

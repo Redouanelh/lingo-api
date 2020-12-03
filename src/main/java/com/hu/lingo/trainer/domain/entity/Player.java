@@ -5,8 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "user")
-public class User extends BaseEntity {
+@Table(name = "player")
+public class Player extends BaseEntity {
 
     @Column(name = "username")
     private String username;
@@ -15,11 +15,11 @@ public class User extends BaseEntity {
     @Column(name = "role")
     private String role;
 
-    public User(){
+    public Player(){
         // Constructor for creation
     }
 
-    public User(String username, String password, String role) {
+    public Player(String username, String password, String role) {
         this.username = username;
         this.password = password;
         this.role = role;
