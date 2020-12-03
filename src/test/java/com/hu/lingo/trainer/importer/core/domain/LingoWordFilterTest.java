@@ -24,6 +24,14 @@ class LingoWordFilterTest {
         assertEquals(shouldAccept, accepts);
     }
 
+
+    @ParameterizedTest
+    @MethodSource("provideWordsOfVaryingCase")
+    void accepts_words_of_lowercase_only(String word, boolean shouldAccept) {
+        boolean accepts = this.filter.verify(word);
+        assertEquals(shouldAccept, accepts);
+    }
+
     static Stream<Arguments> provideWordsOfVaryingLength() {
         return Stream.of(
                 Arguments.of("steen", true), // 5 letter
@@ -31,6 +39,17 @@ class LingoWordFilterTest {
                 Arguments.of("bananen", true), // 7 letter
                 Arguments.of("bron", false),
                 Arguments.of("aanhaken", false)
+        );
+    }
+
+    static Stream<Arguments> provideWordsOfVaryingCase() {
+        return Stream.of(
+                Arguments.of("steen", true),
+                Arguments.of("Steen", false),
+                Arguments.of("SteeN", false),
+                Arguments.of("steeN", false),
+                Arguments.of("stEen", false),
+                Arguments.of("STEEN", false)
         );
     }
 }
