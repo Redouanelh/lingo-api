@@ -1,5 +1,6 @@
 package com.hu.lingo.trainer.importer.infrastructure.driven.file;
 
+import com.hu.lingo.trainer.application.error.WritingToFileException;
 import com.hu.lingo.trainer.importer.core.ports.WordWriter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,7 @@ public class TxtFileWordWriter implements WordWriter {
         try {
             Files.writeString(this.target, String.join("\n", words));
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new WritingToFileException("Failed writing strings to file...");
         }
     }
 }
