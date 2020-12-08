@@ -4,9 +4,6 @@ import com.hu.lingo.trainer.application.error.InvalidFileException;
 import com.hu.lingo.trainer.importer.infrastructure.driven.file.TxtFileWordReader;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Value;
-
-import java.io.IOException;
 import java.nio.file.Path;
 import java.util.stream.Stream;
 
