@@ -2,9 +2,11 @@ package com.hu.lingo.trainer.importer.infrastructure;
 
 import com.hu.lingo.trainer.application.error.WritingToFileException;
 import com.hu.lingo.trainer.importer.infrastructure.driven.file.TxtFileWordWriter;
+import org.codehaus.plexus.util.FileUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -22,8 +24,10 @@ class TxtFileWordWriterTest {
     private List<String> words = Arrays.asList("afweten", "basic", "basket", "eropaf", "eropin");
 
     @BeforeEach
-    void beforeEach() {
+    void beforeEach() throws IOException {
         this.target = Path.of("", "src/test/resources/target.txt");
+
+        FileUtils.fileWrite(new File("src/test/resources/target.txt"), "");
     }
 
     @Test
@@ -44,14 +48,14 @@ class TxtFileWordWriterTest {
         assertEquals(this.words, target_words);
     }
 
-//    @Test
-//    void throws_writing_to_file_exception() {
-//        TxtFileWordWriter writer = new TxtFileWordWriter(this.target);
-//        List<String> empty = new ArrayList<>();
-//
-//        assertThrows(WritingToFileException.class, () -> {
-//            writer.writeWords(empty);
-//        });
-//    }
+    @Test
+    void throws_writing_to_file_exception() {
+        this.target = Path.of("", "a/b/c/d/e/f/g///////");
+        TxtFileWordWriter writer = new TxtFileWordWriter(this.target);
+
+        assertThrows(WritingToFileException.class, () -> {
+            writer.writeWords(this.words);
+        });
+    }
 
 }

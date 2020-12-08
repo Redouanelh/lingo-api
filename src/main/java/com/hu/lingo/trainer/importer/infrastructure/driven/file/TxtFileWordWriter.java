@@ -5,7 +5,6 @@ import com.hu.lingo.trainer.importer.core.ports.WordWriter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
@@ -17,12 +16,11 @@ public class TxtFileWordWriter implements WordWriter {
     public TxtFileWordWriter(@Value("${lingo.target}") Path target) {
         this.target = target;
     }
-
     @Override
     public void writeWords(List<String> words) {
         try {
             Files.writeString(this.target, String.join("\n", words));
-        } catch (IOException e) {
+        } catch (Exception e) {
             throw new WritingToFileException("Failed writing strings to file...");
         }
     }
