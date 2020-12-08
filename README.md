@@ -3,4 +3,4 @@
 
 [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/dashboard?id=Redouanelh_lingo-api)
 
-https://github.com/<Redouanelh>/<lingo-api>/workflows/<Maven-build-main-branch>/badge.svg
+![example workflow file path](https://github.com/actions/lingo-api/workflows/.github/workflows/main-maven-build.yml/badge.svg)
