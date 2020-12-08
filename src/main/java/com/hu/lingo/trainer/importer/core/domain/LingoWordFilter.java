@@ -1,5 +1,8 @@
 package com.hu.lingo.trainer.importer.core.domain;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class LingoWordFilter implements WordFilter {
 
     @Override
