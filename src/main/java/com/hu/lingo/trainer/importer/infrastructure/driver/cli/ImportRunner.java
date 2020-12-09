@@ -24,7 +24,7 @@ public class ImportRunner implements CommandLineRunner {
     @Override
     public void run(String ...args) throws IOException, NoSuchAlgorithmException {
         log.info("Starting word importer...");
-        this.wordImporter.importWords();
+        this.wordImporter.importWords(50);
         this.databaseRunner();
         log.info("Word importer completed...");
 

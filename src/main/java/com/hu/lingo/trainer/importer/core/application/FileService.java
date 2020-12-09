@@ -17,7 +17,7 @@ public class FileService extends BaseService<Checksum> {
     private ChecksumRepsitory checksumRepsitory;
     private final Path path;
 
-    public FileService(@Value("${lingo.target}") Path path, ChecksumRepsitory checksumRepsitory) {
+    public FileService(@Value("${lingo.source}") Path path, ChecksumRepsitory checksumRepsitory) {
         super(checksumRepsitory);
         this.checksumRepsitory = checksumRepsitory;
         this.path = path;

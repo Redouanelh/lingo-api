@@ -39,9 +39,9 @@ class WordImporterTest {
                             spyWriter2
         );
 
-        wordImporter.importWords();
+        wordImporter.importWords(5);
 
-        verify(spyWriter, times(1))
+        verify(spyWriter, atMost(1))
                 .writeWords(wordList);
     }
 }
