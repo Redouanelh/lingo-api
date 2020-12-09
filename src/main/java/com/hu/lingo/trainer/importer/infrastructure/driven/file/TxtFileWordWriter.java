@@ -24,4 +24,13 @@ public class TxtFileWordWriter implements WordWriter {
             throw new WritingToFileException("Failed writing strings to file...");
         }
     }
+
+    @Override
+    public void clearAll() {
+        try {
+            Files.writeString(this.target, String.join("\n", ""));
+        } catch (Exception e) {
+            throw new WritingToFileException("Failed writing strings to file...");
+        }
+    }
 }
