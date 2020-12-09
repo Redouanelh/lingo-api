@@ -50,6 +50,7 @@ public class ImportRunner implements CommandLineRunner {
 
             Checksum existingChecksum = this.fileService.findAll().get(0);
             existingChecksum.setHash(checksum.getHash());
+            
             this.fileService.update(existingChecksum);
         }
     }
