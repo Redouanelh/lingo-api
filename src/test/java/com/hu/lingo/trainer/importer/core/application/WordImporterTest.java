@@ -41,7 +41,7 @@ class WordImporterTest {
 
         wordImporter.importWords(5);
 
-        verify(spyWriter, times(1))
+        verify(spyWriter, atMost(1))
                 .writeWords(wordList);
     }
 }
