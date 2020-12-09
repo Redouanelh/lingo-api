@@ -26,14 +26,14 @@ public class WordImporter {
         this.dbWriter = dbWriter;
     }
 
-    public void importWords() {
+    public void importWords(int amount) {
         this.filteredWords = wordReader
                 .readWords()
                 .filter(wordFilter::verify)
                 .collect(Collectors.toList());
 
         Collections.shuffle(this.filteredWords);
-        this.filteredWords = this.filteredWords.subList(0, 50);
+        this.filteredWords = this.filteredWords.subList(0, amount);
 
         wordWriter.writeWords(this.filteredWords);
     }

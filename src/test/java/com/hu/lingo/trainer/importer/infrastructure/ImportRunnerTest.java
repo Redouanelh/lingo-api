@@ -29,8 +29,9 @@ class ImportRunnerTest {
         WordWriter mockWriter = mock(WordWriter.class);
 
         FileService mockFileService = mock(FileService.class);
+        WordWriter mockDbWordWriter = mock(WordWriter.class);
 
-        WordImporter mockWordImporter = mock(WordImporter.class, withSettings().useConstructor(mockReader, mockFilter, mockWriter));
+        WordImporter mockWordImporter = mock(WordImporter.class, withSettings().useConstructor(mockReader, mockFilter, mockWriter, mockDbWordWriter));
         ImportRunner mockImportRunner = mock(ImportRunner.class, withSettings().useConstructor(mockWordImporter, mockFileService));
         mockImportRunner.run();
 
