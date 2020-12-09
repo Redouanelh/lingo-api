@@ -40,17 +40,20 @@ public class ImportRunner implements CommandLineRunner {
         if (!oneExists) {
             log.info("No hash of file found in database, which means this is the first time. Adding hash to database...");
             this.fileService.save(checksum);
+
+            this.wordImporter.importWordsToDatabase();
         }
 
         if (oneExists && currentChecksumExists) {
             log.info("File has not been changed, skipping database update...");
         } else {
-            log.info("File has been changed, updating hash in database...");
+            log.info("File has been changed, updating database...");
 
             Checksum existingChecksum = this.fileService.findAll().get(0);
             existingChecksum.setHash(checksum.getHash());
 
             this.fileService.update(existingChecksum);
+            this.wordImporter.importWordsToDatabase();
         }
     }
 }
