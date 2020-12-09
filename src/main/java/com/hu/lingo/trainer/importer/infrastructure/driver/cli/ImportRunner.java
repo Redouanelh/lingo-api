@@ -1,9 +1,11 @@
 package com.hu.lingo.trainer.importer.infrastructure.driver.cli;
 
 import com.hu.lingo.trainer.importer.core.application.WordImporter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+@Slf4j
 @Component
 public class ImportRunner implements CommandLineRunner {
      private final WordImporter wordImporter;
@@ -14,8 +16,8 @@ public class ImportRunner implements CommandLineRunner {
 
     @Override
     public void run(String ...args) {
-        System.out.println("Running Word importer...");
+        log.info("Running word importer...");
         this.wordImporter.importWords();
-        System.out.println("Words imported...");
+        log.info("Words imported...");
     }
 }
