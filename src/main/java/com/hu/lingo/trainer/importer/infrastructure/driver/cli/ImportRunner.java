@@ -34,7 +34,7 @@ public class ImportRunner implements CommandLineRunner {
         Checksum checksum = this.fileService.generateHash();
         boolean currentChecksumExists = false;
 
-        boolean oneExists = this.fileService.findAll().isEmpty();
+        boolean oneExists = !this.fileService.findAll().isEmpty();
         if (oneExists) currentChecksumExists = this.fileService.findChecksum(checksum);
 
         if (!oneExists) {

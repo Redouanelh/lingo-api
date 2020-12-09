@@ -1,5 +1,6 @@
 package com.hu.lingo.trainer.importer.core.domain.entity;
 
+import com.hu.lingo.trainer.application.error.InvalidFileException;
 import com.hu.lingo.trainer.domain.entity.BaseEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,20 +26,18 @@ public class Checksum extends BaseEntity {
 
     public Checksum getFileChecksum(MessageDigest messageDigest, File file) throws IOException {
 
-        //Get file input stream for reading the file content
-        FileInputStream fis = new FileInputStream(file);
+        try (FileInputStream fis = new FileInputStream(file);) {
+            //Create byte array to read data in chunks
+            byte[] byteArray = new byte[1024];
+            int bytesCount = 0;
 
-        //Create byte array to read data in chunks
-        byte[] byteArray = new byte[1024];
-        int bytesCount = 0;
-
-        //Read file data and update in message digest
-        while ((bytesCount = fis.read(byteArray)) != -1) {
-            messageDigest.update(byteArray, 0, bytesCount);
-        };
-
-        //close the stream; We don't need it now.
-        fis.close();
+            //Read file data and update in message digest
+            while ((bytesCount = fis.read(byteArray)) != -1) {
+                messageDigest.update(byteArray, 0, bytesCount);
+            }
+        } catch (IOException e) {
+            throw new InvalidFileException("Invalid file...");
+        }
 
         //Get the hash's bytes
         byte[] bytes = messageDigest.digest();
