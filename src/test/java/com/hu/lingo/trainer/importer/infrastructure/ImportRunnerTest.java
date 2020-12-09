@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+
 import static org.mockito.Mockito.*;
 
 @ExtendWith(SpringExtension.class)
@@ -18,7 +21,7 @@ import static org.mockito.Mockito.*;
 class ImportRunnerTest {
 
     @Test
-    void import_words_once_at_startup() {
+    void import_words_once_at_startup() throws IOException, NoSuchAlgorithmException {
 
         WordReader mockReader = mock(WordReader.class);
         WordFilter mockFilter = mock(WordFilter.class);
