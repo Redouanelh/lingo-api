@@ -15,7 +15,7 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-public class ImportRunnerTest {
+class ImportRunnerTest {
 
     @Test
     void import_words_once_at_startup() {
