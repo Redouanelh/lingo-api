@@ -30,11 +30,13 @@ class WordImporterTest {
                 .thenReturn(true);
 
         WordWriter spyWriter = spy(WordWriter.class);
+        WordWriter spyWriter2 = spy(WordWriter.class);
 
         WordImporter wordImporter = new WordImporter(
                             mockReader,
                             mockFilter,
-                            spyWriter
+                            spyWriter,
+                            spyWriter2
         );
 
         wordImporter.importWords();
