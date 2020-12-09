@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
-import java.util.List;
 
 @Slf4j
 @Component
@@ -24,10 +23,10 @@ public class ImportRunner implements CommandLineRunner {
 
     @Override
     public void run(String ...args) throws IOException, NoSuchAlgorithmException {
-        log.info("Running word importer...");
+        log.info("Starting word importer...");
         this.wordImporter.importWords();
         this.databaseRunner();
-        log.info("Words imported...");
+        log.info("Word importer completed...");
 
     }
 
@@ -50,7 +49,7 @@ public class ImportRunner implements CommandLineRunner {
 
             Checksum existingChecksum = this.fileService.findAll().get(0);
             existingChecksum.setHash(checksum.getHash());
-            
+
             this.fileService.update(existingChecksum);
         }
     }

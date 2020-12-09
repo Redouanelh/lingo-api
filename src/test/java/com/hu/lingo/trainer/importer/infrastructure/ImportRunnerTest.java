@@ -1,5 +1,6 @@
 package com.hu.lingo.trainer.importer.infrastructure;
 
+import com.hu.lingo.trainer.importer.core.application.FileService;
 import com.hu.lingo.trainer.importer.core.application.WordImporter;
 import com.hu.lingo.trainer.importer.core.domain.WordFilter;
 import com.hu.lingo.trainer.importer.core.ports.WordReader;
@@ -27,8 +28,10 @@ class ImportRunnerTest {
         WordFilter mockFilter = mock(WordFilter.class);
         WordWriter mockWriter = mock(WordWriter.class);
 
+        FileService mockFileService = mock(FileService.class);
+
         WordImporter mockWordImporter = mock(WordImporter.class, withSettings().useConstructor(mockReader, mockFilter, mockWriter));
-        ImportRunner mockImportRunner = mock(ImportRunner.class, withSettings().useConstructor(mockWordImporter));
+        ImportRunner mockImportRunner = mock(ImportRunner.class, withSettings().useConstructor(mockWordImporter, mockFileService));
         mockImportRunner.run();
 
         verify(mockImportRunner, times(1))
