@@ -3,6 +3,7 @@ package com.hu.lingo.trainer.importer.infrastructure.driver.cli;
 import com.hu.lingo.trainer.importer.core.application.FileService;
 import com.hu.lingo.trainer.importer.core.application.WordImporter;
 import com.hu.lingo.trainer.importer.core.domain.entity.Checksum;
+import com.hu.lingo.trainer.importer.infrastructure.driver.DatabaseRunner;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -12,7 +13,7 @@ import java.security.NoSuchAlgorithmException;
 
 @Slf4j
 @Component
-public class ImportRunner implements CommandLineRunner {
+public class ImportRunner implements CommandLineRunner, DatabaseRunner {
      private final WordImporter wordImporter;
      private final FileService fileService;
 
@@ -30,6 +31,7 @@ public class ImportRunner implements CommandLineRunner {
 
     }
 
+    @Override
     public void databaseRunner() throws IOException, NoSuchAlgorithmException {
         Checksum checksum = this.fileService.generateHash();
         boolean currentChecksumExists = false;

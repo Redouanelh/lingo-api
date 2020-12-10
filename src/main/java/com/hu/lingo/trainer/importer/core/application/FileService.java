@@ -2,6 +2,7 @@ package com.hu.lingo.trainer.importer.core.application;
 
 import com.hu.lingo.trainer.importer.core.domain.entity.Checksum;
 import com.hu.lingo.trainer.importer.core.domain.entity.ChecksumRepsitory;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -11,11 +12,12 @@ import java.nio.file.Path;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+@Setter
 @Service
 public class FileService extends BaseService<Checksum> {
 
     private ChecksumRepsitory checksumRepsitory;
-    private final Path path;
+    private Path path;
 
     public FileService(@Value("${lingo.source}") Path path, ChecksumRepsitory checksumRepsitory) {
         super(checksumRepsitory);
