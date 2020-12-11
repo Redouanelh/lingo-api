@@ -4,6 +4,7 @@ import com.hu.lingo.trainer.importer.core.application.FileService;
 import com.hu.lingo.trainer.importer.core.application.WordImporter;
 import com.hu.lingo.trainer.importer.core.domain.entity.Checksum;
 import com.hu.lingo.trainer.importer.infrastructure.driver.DatabaseRunner;
+import com.hu.lingo.trainer.importer.infrastructure.driver.TxtFileRunner;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -13,7 +14,7 @@ import java.security.NoSuchAlgorithmException;
 
 @Slf4j
 @Component
-public class ImportRunner implements CommandLineRunner, DatabaseRunner {
+public class ImportRunner implements CommandLineRunner, DatabaseRunner, TxtFileRunner {
      private final WordImporter wordImporter;
      private final FileService fileService;
 
@@ -25,10 +26,14 @@ public class ImportRunner implements CommandLineRunner, DatabaseRunner {
     @Override
     public void run(String ...args) throws IOException, NoSuchAlgorithmException {
         log.info("Starting word importer...");
-        this.wordImporter.importWords(50);
+        this.txtFileRunner();
         this.databaseRunner();
         log.info("Word importer completed...");
+    }
 
+    @Override
+    public void txtFileRunner() {
+        this.wordImporter.importWords(50);
     }
 
     @Override
