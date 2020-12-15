@@ -14,34 +14,31 @@ import static org.mockito.Mockito.*;
 
 class PostgresWordWriterTest {
 
-    private static WordService mockFileService;
+    private static WordRepository spyWordRepository;
+    private static WordService mockWordService;
+    private static PostgresWordWriter wordWriter;
 
-    private List<String> words = Arrays.asList("afweten", "basic", "basket", "eropaf", "eropin");
+    private List<String> words = Arrays.asList("basic", "basic", "basic", "basic", "basic");
 
     @BeforeAll
     static void beforeAll() {
-        WordRepository spyWordRepository = spy(WordRepository.class);
-        mockFileService = mock(WordService.class, withSettings().useConstructor(spyWordRepository));
+        spyWordRepository = spy(WordRepository.class);
+        mockWordService = mock(WordService.class, withSettings().useConstructor(spyWordRepository));
+
+        wordWriter = new PostgresWordWriter(mockWordService);
     }
 
     @Test
-    void writing_all_words_to_db_once() {
-        PostgresWordWriter mockWriter = mock(PostgresWordWriter.class, withSettings().useConstructor(mockFileService));
+    void removing_all_words_from_db_once() {
+        String word = words.get(0);
 
-        mockWriter.writeWords(this.words);
+        when(spyWordRepository.save(new Word(word)))
+                .thenReturn(new Word(word));
 
-        verify(mockWriter, atMost(1))
-                .writeWords(this.words);
-        
+        wordWriter.clearAll();
+
+        verify(mockWordService, times(1))
+                .clearAllWords();
     }
 
-    @Test
-    void clear_all_words_from_db_once() {
-        PostgresWordWriter mockWriter = mock(PostgresWordWriter.class, withSettings().useConstructor(mockFileService));
-
-        mockWriter.clearAll();
-
-        verify(mockWriter, atMost(1))
-                .clearAll();
-    }
 }
