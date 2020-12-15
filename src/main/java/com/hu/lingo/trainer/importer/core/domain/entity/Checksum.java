@@ -1,6 +1,6 @@
 package com.hu.lingo.trainer.importer.core.domain.entity;
 
-import com.hu.lingo.trainer.application.error.InvalidFileException;
+import com.hu.lingo.trainer.importer.error.InvalidFileException;
 import com.hu.lingo.trainer.domain.entity.BaseEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,7 +24,7 @@ public class Checksum extends BaseEntity {
     @Column(name = "hash")
     private String hash;
 
-    public Checksum getFileChecksum(MessageDigest messageDigest, File file) throws IOException {
+    public Checksum getFileChecksum(MessageDigest messageDigest, File file) {
 
         try (FileInputStream fis = new FileInputStream(file);) {
             //Create byte array to read data in chunks

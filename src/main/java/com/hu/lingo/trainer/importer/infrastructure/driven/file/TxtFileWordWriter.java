@@ -1,6 +1,7 @@
 package com.hu.lingo.trainer.importer.infrastructure.driven.file;
 
-import com.hu.lingo.trainer.application.error.WritingToFileException;
+import com.hu.lingo.trainer.importer.error.ClearFileException;
+import com.hu.lingo.trainer.importer.error.WritingToFileException;
 import com.hu.lingo.trainer.importer.core.ports.WordWriter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,8 @@ public class TxtFileWordWriter implements WordWriter {
     public TxtFileWordWriter(@Value("${lingo.target}") Path target) {
         this.target = target;
     }
+
+    /** Writing each word from the list to a target text file. This list only contains valid words */
     @Override
     public void writeWords(List<String> words) {
         try {
@@ -25,12 +28,13 @@ public class TxtFileWordWriter implements WordWriter {
         }
     }
 
+    /** Clears text file */
     @Override
     public void clearAll() {
         try {
             Files.writeString(this.target, String.join("\n", ""));
         } catch (Exception e) {
-            throw new WritingToFileException("Failed writing strings to file...");
+            throw new ClearFileException("Failed clearing file...");
         }
     }
 }

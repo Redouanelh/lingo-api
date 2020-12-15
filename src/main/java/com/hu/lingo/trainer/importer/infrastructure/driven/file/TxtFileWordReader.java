@@ -1,6 +1,6 @@
 package com.hu.lingo.trainer.importer.infrastructure.driven.file;
 
-import com.hu.lingo.trainer.application.error.InvalidFileException;
+import com.hu.lingo.trainer.importer.error.InvalidFileException;
 import com.hu.lingo.trainer.importer.core.ports.WordReader;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -19,6 +19,7 @@ public class TxtFileWordReader implements WordReader {
         this.source = source;
     }
 
+    /** Read all words from source file and returns a stream of strings (words) */
     @Override
     public Stream<String> readWords() {
         try {
