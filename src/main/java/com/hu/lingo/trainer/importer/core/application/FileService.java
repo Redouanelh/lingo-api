@@ -2,17 +2,14 @@ package com.hu.lingo.trainer.importer.core.application;
 
 import com.hu.lingo.trainer.importer.core.domain.entity.Checksum;
 import com.hu.lingo.trainer.importer.core.domain.entity.ChecksumRepsitory;
-import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Path;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-@Setter
 @Service
 public class FileService extends BaseService<Checksum> {
 
@@ -26,7 +23,7 @@ public class FileService extends BaseService<Checksum> {
     }
 
     /** Generate a hash of de source file with words */
-    public Checksum generateHash() throws NoSuchAlgorithmException, IOException {
+    public Checksum generateHash() throws NoSuchAlgorithmException {
         File file = new File(String.valueOf(this.path));
         Checksum checksum = new Checksum();
 
