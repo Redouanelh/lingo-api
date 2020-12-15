@@ -23,6 +23,7 @@ public class ImportRunner implements CommandLineRunner, DatabaseRunner, TxtFileR
          this.fileService = fileService;
     }
 
+    /** When starting the SpringApplication, this method will be called. */
     @Override
     public void run(String ...args) throws IOException, NoSuchAlgorithmException {
         log.info("Starting word importer...");
@@ -31,11 +32,16 @@ public class ImportRunner implements CommandLineRunner, DatabaseRunner, TxtFileR
         log.info("Word importer completed...");
     }
 
+    /** Importing words from the source text file, with a certain amount (50 words) */
     @Override
     public void txtFileRunner() {
         this.wordImporter.importWords(50);
     }
 
+    /** Writing the filtered words to the database, ONLY if the source text file's hash has been changed.
+     *  If the file's hash has not been changed, NOTHING will be called on the database.
+     *  If the file's hash has been changed, all words in the database will be removed and the new words will be saved in the database,
+     *  and the hash of the source text fill will be updated inside the database. */
     @Override
     public void databaseRunner() throws IOException, NoSuchAlgorithmException {
         Checksum checksum = this.fileService.generateHash();

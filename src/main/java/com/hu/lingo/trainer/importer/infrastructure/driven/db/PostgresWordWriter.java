@@ -14,6 +14,7 @@ public class PostgresWordWriter implements WordWriter {
         this.wordService = wordService;
     }
 
+    /** Save each word from the list in the database */
     @Override
     public void writeWords(List<String> words) {
         for (String word: words) {
@@ -21,6 +22,7 @@ public class PostgresWordWriter implements WordWriter {
         }
     }
 
+    /** Remove all words from the database */
     @Override
     public void clearAll() {
         this.wordService.clearAllWords();

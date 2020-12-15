@@ -17,6 +17,8 @@ public class TxtFileWordWriter implements WordWriter {
     public TxtFileWordWriter(@Value("${lingo.target}") Path target) {
         this.target = target;
     }
+
+    /** Writing each word from the list to a target text file. This list only contains valid words */
     @Override
     public void writeWords(List<String> words) {
         try {
@@ -26,6 +28,7 @@ public class TxtFileWordWriter implements WordWriter {
         }
     }
 
+    /** Clears text file */
     @Override
     public void clearAll() {
         try {

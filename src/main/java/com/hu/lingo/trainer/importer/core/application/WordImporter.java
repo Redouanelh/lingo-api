@@ -26,6 +26,8 @@ public class WordImporter {
         this.dbWriter = dbWriter;
     }
 
+    /** Import words from source file using a filter, shuffle the list of words,
+     *  give the amount of words you would like, write the filtered words to a text file */
     public void importWords(int amount) {
         this.filteredWords = wordReader
                 .readWords()
@@ -38,6 +40,8 @@ public class WordImporter {
         wordWriter.writeWords(this.filteredWords);
     }
 
+    /** First remove al words from the database, then save all the words from
+     * the filtered words text file to the database */
     public void importWordsToDatabase() {
         dbWriter.clearAll();
         dbWriter.writeWords(this.filteredWords);

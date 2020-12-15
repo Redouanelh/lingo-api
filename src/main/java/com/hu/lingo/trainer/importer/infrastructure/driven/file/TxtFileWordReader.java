@@ -19,6 +19,7 @@ public class TxtFileWordReader implements WordReader {
         this.source = source;
     }
 
+    /** Read all words from source file and returns a stream of strings (words) */
     @Override
     public Stream<String> readWords() {
         try {

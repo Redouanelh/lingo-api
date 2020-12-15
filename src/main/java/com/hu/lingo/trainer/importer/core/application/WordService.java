@@ -13,10 +13,12 @@ public class WordService extends BaseService<Word> {
         this.wordRepository = wordRepository;
     }
 
+    /** Save a word */
     public Word save(String word) {
         return this.wordRepository.save(new Word(word));
     }
 
+    /** Remove all words from the database */
     public void clearAllWords() {
         this.wordRepository.deleteAll();
     }

@@ -25,6 +25,7 @@ public class FileService extends BaseService<Checksum> {
         this.path = path;
     }
 
+    /** Generate a hash of de source file with words */
     public Checksum generateHash() throws NoSuchAlgorithmException, IOException {
         File file = new File(String.valueOf(this.path));
         Checksum checksum = new Checksum();
@@ -35,6 +36,7 @@ public class FileService extends BaseService<Checksum> {
         return checksum;
     }
 
+    /** Check if current checksum (hash) exists in database */
     public boolean findChecksum(Checksum checksum) {
         return this.checksumRepsitory.getChecksumByHash(checksum.getHash()) != null;
     }
