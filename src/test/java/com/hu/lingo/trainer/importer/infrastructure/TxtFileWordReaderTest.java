@@ -1,6 +1,6 @@
 package com.hu.lingo.trainer.importer.infrastructure;
 
-import com.hu.lingo.trainer.application.error.InvalidFileException;
+import com.hu.lingo.trainer.importer.error.InvalidFileException;
 import com.hu.lingo.trainer.importer.infrastructure.driven.file.TxtFileWordReader;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

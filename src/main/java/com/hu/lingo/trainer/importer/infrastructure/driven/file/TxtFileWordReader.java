@@ -1,6 +1,6 @@
 package com.hu.lingo.trainer.importer.infrastructure.driven.file;
 
-import com.hu.lingo.trainer.application.error.InvalidFileException;
+import com.hu.lingo.trainer.importer.error.InvalidFileException;
 import com.hu.lingo.trainer.importer.core.ports.WordReader;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

@@ -1,13 +1,11 @@
 package com.hu.lingo.trainer.importer.infrastructure;
 
-import com.hu.lingo.trainer.application.error.ClearFileException;
-import com.hu.lingo.trainer.application.error.WritingToFileException;
+import com.hu.lingo.trainer.importer.error.ClearFileException;
+import com.hu.lingo.trainer.importer.error.WritingToFileException;
 import com.hu.lingo.trainer.importer.infrastructure.driven.file.TxtFileWordWriter;
-import org.codehaus.plexus.util.FileUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;

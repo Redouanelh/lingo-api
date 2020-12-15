@@ -1,6 +1,6 @@
 package com.hu.lingo.trainer.importer.core.domain.entity;
 
-import com.hu.lingo.trainer.application.error.InvalidFileException;
+import com.hu.lingo.trainer.importer.error.InvalidFileException;
 import com.hu.lingo.trainer.domain.entity.BaseEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
