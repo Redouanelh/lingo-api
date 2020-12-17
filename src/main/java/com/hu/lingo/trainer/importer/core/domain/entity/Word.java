@@ -21,6 +21,11 @@ public class Word extends BaseEntity {
     @Column
     private String word;
 
-    //length column
-    // verander table naam en dus ook die repository jwz
+    @Column
+    private int length;
+
+    public Word(String word) {
+        this.word = word;
+        this.length = word.length();
+    }
 }

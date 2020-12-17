@@ -26,7 +26,7 @@ public class PlayerController {
 
     @PostMapping("/dummy")
     public Boolean addDummy() {
-        Player dummy = new Player("dummy", "dummypass", "USER");
+        Player dummy = new Player("dummy");
 
         return this.playerService.save(dummy);
     }
