@@ -28,8 +28,9 @@ public class PlayerController {
 
     @GetMapping("/{username}")
     public ResponseEntity<FindPlayerByUsernameResponse> user(@PathVariable String username) {
+        Player player = this.playerService.findPlayerByUsername(username);
 
-        return null;
+        return ResponseEntity.ok(new FindPlayerByUsernameResponse(player, "Player was successfully found."));
     }
 
     @PostMapping
