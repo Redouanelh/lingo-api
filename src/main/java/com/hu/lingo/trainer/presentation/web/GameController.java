@@ -22,4 +22,6 @@ public class GameController {
         return null;
     }
 
+    // alle highscores ophalen
+
 }
