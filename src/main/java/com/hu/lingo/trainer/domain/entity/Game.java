@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -14,10 +13,6 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "player")
-public class Player extends BaseEntity {
-
-    @Column(name = "username")
-    private String username;
-
+@Table(name = "game")
+public class Game extends BaseEntity {
 }
