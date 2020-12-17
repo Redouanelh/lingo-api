@@ -12,5 +12,5 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreatePlayerRequest implements Serializable {
-    private String name;
+    private String username;
 }
