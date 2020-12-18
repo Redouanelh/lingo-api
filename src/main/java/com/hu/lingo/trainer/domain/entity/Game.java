@@ -24,7 +24,7 @@ public class Game extends BaseEntity {
     private int gameScore = 0;
 
     @Enumerated(EnumType.STRING)
-    private GameStatus gameStatus = GameStatus.ACTIVE;
+    private GameStatus gameStatus;
 
     @CreationTimestamp
     private Date created_at;
@@ -32,6 +32,11 @@ public class Game extends BaseEntity {
     @OneToOne()
     @JoinColumn(name = "player_fk")
     private Player player;
+
+    public Game(Player player, GameStatus gameStatus) {
+        this.player = player;
+        this.gameStatus = gameStatus;
+    }
 
     public void correctWord() {
         this.gameScore += 1;

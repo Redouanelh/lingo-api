@@ -4,6 +4,7 @@ import com.hu.lingo.trainer.application.GameService;
 import com.hu.lingo.trainer.application.error.MissingParameterException;
 import com.hu.lingo.trainer.domain.entity.Game;
 import com.hu.lingo.trainer.presentation.web.requests.CreateGameRequest;
+import com.hu.lingo.trainer.presentation.web.responses.CreateGameResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,10 +27,11 @@ public class GameController {
         if (request.getUsername() == null) throw new MissingParameterException("Username parameter required when starting a game.");
 
         Game game = this.gameService.createGame(request.getUsername());
-
-        return null;
+        return ResponseEntity.ok(new CreateGameResponse(game.getId(), game.getGameRound(), game.getGameScore(), game.getGameStatus(), game.getPlayer(), "Game was successfully created."));
     }
 
     // alle highscores ophalen
+
+    // alle games ophalen of alleen alle active games of alle finished?
 
 }
