@@ -1,4 +1,4 @@
-package com.hu.lingo.trainer.presentation.web;
+package com.hu.lingo.trainer.presentation.web.controller;
 
 import com.hu.lingo.trainer.application.GameService;
 import com.hu.lingo.trainer.application.error.MissingParameterException;
