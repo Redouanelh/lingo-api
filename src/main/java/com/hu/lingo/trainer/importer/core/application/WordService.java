@@ -15,7 +15,7 @@ public class WordService extends BaseService<Word> {
 
     /** Save a word */
     public Word save(String word) {
-        return this.wordRepository.save(new Word(word));
+        return this.wordRepository.save(new Word(word, word.length()));
     }
 
     /** Remove all words from the database */

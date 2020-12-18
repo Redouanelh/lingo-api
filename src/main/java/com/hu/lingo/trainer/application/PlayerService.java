@@ -30,7 +30,7 @@ public class PlayerService extends BaseService<Player> {
         Optional<Player> player = this.playerRepository.findPlayerByUsername(username);
 
         /* If player does not exist in database, application returns http NOT_FOUND status with written message */
-        if (player.isEmpty()) throw new PlayerNotFoundException(String.format("Player with username %s not found.", username));
+        if (player.isEmpty()) throw new PlayerNotFoundException(String.format("Player with username %s not found, you should register.", username));
 
         return player.get();
     }

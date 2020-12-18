@@ -18,10 +18,10 @@ import java.sql.Date;
 public class Game extends BaseEntity {
 
     @Column(name = "round")
-    private int gameRound;
+    private int gameRound = 1;
 
     @Column(name = "score")
-    private int gameScore;
+    private int gameScore = 0;
 
     @Enumerated(EnumType.STRING)
     private GameStatus gameStatus = GameStatus.ACTIVE;
