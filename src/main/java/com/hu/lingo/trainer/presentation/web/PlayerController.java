@@ -35,6 +35,7 @@ public class PlayerController {
 
     @PostMapping
     public ResponseEntity<CreatePlayerResponse> createPlayer(@RequestBody CreatePlayerRequest request) {
+        /* If person tries to register without 'username' parameter, application returns http BAD_REQUEST status with written message */
         if (request.getUsername() == null) throw new MissingParameterException("Username parameter required when creating a player.");
 
         Player player = this.playerService.savePlayer(request.getUsername());

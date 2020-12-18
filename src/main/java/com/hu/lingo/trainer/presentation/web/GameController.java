@@ -17,7 +17,7 @@ public class GameController {
     }
 
     @PostMapping("/start")
-    public ResponseEntity<?> start() {
+    public ResponseEntity<?> startGame() {
 
         return null;
     }
