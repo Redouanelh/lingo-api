@@ -19,9 +19,5 @@ public class Player extends BaseEntity {
 
     @Column(name = "username")
     private String username;
-    @Column(name = "password")
-    private String password;
-    @Column(name = "role")
-    private String role;
 
 }
