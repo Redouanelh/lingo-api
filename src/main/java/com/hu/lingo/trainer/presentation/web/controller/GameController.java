@@ -27,7 +27,7 @@ public class GameController {
         if (request.getUsername() == null) throw new MissingParameterException("Username parameter required when starting a game.");
 
         Game game = this.gameService.createGame(request.getUsername());
-        return ResponseEntity.ok(new CreateGameResponse(game.getId(), game.getGameRound(), game.getGameScore(), game.getGameStatus(), game.getPlayer(), "Game was successfully created."));
+        return ResponseEntity.ok(new CreateGameResponse(game.getId(), game.getGameRound(), game.getGameScore(), game.getGameStatus(), game.getPlayer(), "Game was successfully created. The word has"));
     }
 
     // alle highscores ophalen

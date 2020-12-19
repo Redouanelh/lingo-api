@@ -27,6 +27,7 @@ public class GameService extends BaseService<Game> {
     @Transactional
     public Game createGame(String username) {
         Player player = this.playerService.findPlayerByUsername(username);
+        // WordService.getRandomWord....
 
         Optional<Game> game = this.gameRepository.findByPlayerAndGameStatus(player, GameStatus.ACTIVE);
         if (game.isPresent()) throw new GameAlreadyExistsException(String.format("Player with username %s already has an active game running.", username));

@@ -43,26 +43,31 @@ public class ImportRunner implements CommandLineRunner, DatabaseRunner, TxtFileR
      *  If the file's hash has been changed, all words in the database will be removed and the new words will be saved in the database,
      *  and the hash of the source text fill will be updated inside the database. */
     @Override
-    public void databaseRunner() throws IOException, NoSuchAlgorithmException {
+    public void databaseRunner() throws NoSuchAlgorithmException {
         Checksum checksum = this.fileService.generateHash();
+
         boolean currentChecksumExists = false;
+        Checksum existingChecksum = new Checksum();
 
         boolean oneExists = !this.fileService.findAll().isEmpty();
-        if (oneExists) currentChecksumExists = this.fileService.findChecksum(checksum);
+        if (oneExists) {
+            currentChecksumExists = this.fileService.findChecksum(checksum);
+            existingChecksum = this.fileService.findAll().get(0);
+        }
 
         if (!oneExists) {
             log.info("No hash of file found in database, which means this is the first time. Adding hash to database...");
             this.fileService.save(checksum);
 
+            existingChecksum = this.fileService.findAll().get(0);
             this.wordImporter.importWordsToDatabase();
         }
 
-        if (oneExists && currentChecksumExists) {
+        if (checksum.getHash().equals(existingChecksum.getHash())) {
             log.info("File has not been changed, skipping database update...");
-        } else {
+        } else if (!checksum.getHash().equals(existingChecksum.getHash())){
             log.info("File has been changed, updating database...");
 
-            Checksum existingChecksum = this.fileService.findAll().get(0);
             existingChecksum.setHash(checksum.getHash());
 
             this.fileService.update(existingChecksum);
