@@ -9,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
 @Slf4j
@@ -25,7 +24,7 @@ public class ImportRunner implements CommandLineRunner, DatabaseRunner, TxtFileR
 
     /** When starting the SpringApplication, this method will be called. */
     @Override
-    public void run(String ...args) throws IOException, NoSuchAlgorithmException {
+    public void run(String ...args) throws NoSuchAlgorithmException {
         log.info("Starting word importer...");
         this.txtFileRunner();
         this.databaseRunner();
