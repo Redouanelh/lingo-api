@@ -32,10 +32,10 @@ public class ImportRunner implements CommandLineRunner, DatabaseRunner, TxtFileR
         log.info("Word importer completed...");
     }
 
-    /** Importing words from the source text file, with a certain amount */
+    /** Importing words from the source text file (for now all filtered words, can easily be refactored with 'amount' parameter) */
     @Override
     public void txtFileRunner() {
-        this.wordImporter.importWords(50);
+        this.wordImporter.importWords();
     }
 
     /** Writing the filtered words to the database, ONLY if the source text file's hash has been changed.

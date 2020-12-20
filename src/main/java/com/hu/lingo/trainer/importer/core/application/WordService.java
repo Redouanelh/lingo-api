@@ -22,7 +22,6 @@ public class WordService extends BaseService<Word> {
     /** Remove all words from the database */
     @Transactional
     public void clearAllWords() {
-//        this.wordRepository.deleteAll();
         this.wordRepository.truncateTable();
     }
 }
