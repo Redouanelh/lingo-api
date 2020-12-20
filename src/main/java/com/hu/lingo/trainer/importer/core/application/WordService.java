@@ -3,6 +3,7 @@ package com.hu.lingo.trainer.importer.core.application;
 import com.hu.lingo.trainer.importer.core.domain.entity.Word;
 import com.hu.lingo.trainer.importer.core.domain.entity.WordRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class WordService extends BaseService<Word> {
@@ -19,7 +20,9 @@ public class WordService extends BaseService<Word> {
     }
 
     /** Remove all words from the database */
+    @Transactional
     public void clearAllWords() {
-        this.wordRepository.deleteAll();
+//        this.wordRepository.deleteAll();
+        this.wordRepository.truncateTable();
     }
 }

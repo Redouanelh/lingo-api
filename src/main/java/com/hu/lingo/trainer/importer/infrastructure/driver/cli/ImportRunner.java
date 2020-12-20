@@ -32,7 +32,7 @@ public class ImportRunner implements CommandLineRunner, DatabaseRunner, TxtFileR
         log.info("Word importer completed...");
     }
 
-    /** Importing words from the source text file, with a certain amount (50 words) */
+    /** Importing words from the source text file, with a certain amount */
     @Override
     public void txtFileRunner() {
         this.wordImporter.importWords(50);
