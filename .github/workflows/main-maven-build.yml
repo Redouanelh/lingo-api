@@ -6,8 +6,6 @@ name: Maven-build-main-branch
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
   build:
