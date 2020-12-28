@@ -32,8 +32,8 @@ class PostgresWordWriterTest {
     void removing_all_words_from_db_once() {
         String word = words.get(0);
 
-        when(spyWordRepository.save(new Word(word)))
-                .thenReturn(new Word(word));
+        when(spyWordRepository.save(new Word(word, word.length())))
+                .thenReturn(new Word(word, word.length()));
 
         wordWriter.clearAll();
 

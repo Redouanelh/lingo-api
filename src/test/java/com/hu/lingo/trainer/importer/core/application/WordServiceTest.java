@@ -24,10 +24,10 @@ class WordServiceTest {
         String word = "pizza";
 
         when(wordService.save(word))
-                .thenReturn(new Word(word));
+                .thenReturn(new Word(word, word.length()));
 
         verify(spyWordRepository, atMost(1))
-                .save(new Word(word));
+                .save(new Word(word, word.length()));
     }
 
     @Test
