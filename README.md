@@ -11,7 +11,7 @@
 
  ### Request URL
  - *http://localhost:8080*
- - *HEROKU URL WILL BE ADDED SOON...*
+ - *https://lingo-api.herokuapp.com*
 
 * The game
   * **GET** /api/player/all [Get all players]
