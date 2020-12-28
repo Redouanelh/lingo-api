@@ -23,9 +23,4 @@ public class Word extends BaseEntity {
 
     @Column
     private int length;
-
-    public Word(String word) {
-        this.word = word;
-        this.length = word.length();
-    }
 }

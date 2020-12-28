@@ -50,7 +50,7 @@ class WordImporterTest {
         when(mockFilter.verify(anyString()))
                 .thenReturn(true);
 
-        wordImporter.importWords(5);
+        wordImporter.importWords();
 
         verify(spyWriter, atMost(1))
                 .writeWords(wordList);

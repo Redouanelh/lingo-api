@@ -27,15 +27,14 @@ public class WordImporter {
     }
 
     /** Import words from source file using a filter, shuffle the list of words,
-     *  give the amount of words you would like, write the filtered words to a text file */
-    public void importWords(int amount) {
+     *  write the filtered words to a text file */
+    public void importWords() {
         this.filteredWords = wordReader
                 .readWords()
                 .filter(wordFilter::verify)
                 .collect(Collectors.toList());
 
         Collections.shuffle(this.filteredWords);
-        this.filteredWords = this.filteredWords.subList(0, amount);
 
         wordWriter.writeWords(this.filteredWords);
     }
