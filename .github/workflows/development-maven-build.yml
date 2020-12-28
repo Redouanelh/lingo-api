@@ -4,8 +4,6 @@
 name: Maven-build-development-branch
 
 on:
-  push:
-    branches: [ development ]
   pull_request:
     branches: [ development ]
 
