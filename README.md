@@ -9,11 +9,12 @@
 
 ![example workflow name](https://github.com/Redouanelh/lingo-api/workflows/Maven-build-development-branch/badge.svg)
 
- ### Requests
+ ### Request URL
  - *http://localhost:8080*
  - *HEROKU URL WILL BE ADDED SOON...*
 
-- **GET** /api/player/all [Get all players]
-- **GET** /api/player/{username} [Get one player]
-- **POST** /api/player/ [JSON body parameter(s): 'username': 'xxx'] [Register as player]
-- **POST** /api/game/start/ [JSON body parameter(s): 'username': 'xxx'] [Start a new game]
+* The game
+  * **GET** /api/player/all [Get all players]
+  * **GET** /api/player/{username} [Get one player]
+  * **POST** /api/player/ [JSON body parameter(s): 'username': 'xxx'] [Register as player]
+  * **POST** /api/game/start/ [JSON body parameter(s): 'username': 'xxx'] [Start a new game]
