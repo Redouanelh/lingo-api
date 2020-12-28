@@ -70,7 +70,7 @@ public class ImportRunner implements CommandLineRunner, DatabaseRunner, TxtFileR
             existingChecksum.setHash(checksum.getHash());
 
             this.fileService.update(existingChecksum);
-            this.wordImporter.importWordsToDatabase();
+//            this.wordImporter.importWordsToDatabase(); TODO: Comment this out in final version!
         }
     }
 }
