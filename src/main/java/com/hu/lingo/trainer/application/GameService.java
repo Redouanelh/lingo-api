@@ -3,7 +3,6 @@ package com.hu.lingo.trainer.application;
 import com.hu.lingo.trainer.application.error.GameAlreadyExistsException;
 import com.hu.lingo.trainer.application.error.GameNotSavedException;
 import com.hu.lingo.trainer.application.error.NoActiveGameException;
-import com.hu.lingo.trainer.application.error.PlayerNotFoundException;
 import com.hu.lingo.trainer.data.GameRepository;
 import com.hu.lingo.trainer.domain.entity.Game;
 import com.hu.lingo.trainer.domain.entity.GameStatus;
@@ -53,7 +52,14 @@ public class GameService extends BaseService<Game> {
         return game.get();
     }
 
-    @Transactional
-    public 
+    @Transactional //STRING MOET HIER WEG JWZ DENK HIEROVER NA
+    public String performTurn(Game game, GameWord guess) {
+        Boolean validGuess = this.wordImportController.guessValidator(game.getGameWord().getWord(), guess.getWord());
+        if (validGuess) {
+            System.out.println("Perform turn...");
+        }
+
+        return null;
+    }
 
 }

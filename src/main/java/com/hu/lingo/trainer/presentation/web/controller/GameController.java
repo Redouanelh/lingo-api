@@ -3,6 +3,7 @@ package com.hu.lingo.trainer.presentation.web.controller;
 import com.hu.lingo.trainer.application.GameService;
 import com.hu.lingo.trainer.application.error.MissingParameterException;
 import com.hu.lingo.trainer.domain.entity.Game;
+import com.hu.lingo.trainer.domain.entity.GameWord;
 import com.hu.lingo.trainer.presentation.web.requests.CreateGameRequest;
 import com.hu.lingo.trainer.presentation.web.requests.CreateTurnRequest;
 import com.hu.lingo.trainer.presentation.web.responses.CreateGameResponse;
@@ -34,6 +35,7 @@ public class GameController {
         if (request.getGuess() == null) throw new MissingParameterException("Guess parameter required when performing a turn.");
 
         Game game = this.gameService.findGame(request.getUsername());
+        String testTurn = this.gameService.performTurn(game, new GameWord(request.getGuess())); // DEZE METHODE MOET ANDERS JWZ IPV String
 
         return null;
     }

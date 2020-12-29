@@ -37,7 +37,7 @@ public class WordService extends BaseService<Word> {
     @Transactional
     public ValidWord guessValidator(String word, String guess) {
         Word actualWord = new Word(word, word.length());
-        Optional<Word> guessedWord = this.wordRepository.findWordByWord(guess);
+        Optional<Word> guessedWord = this.wordRepository.findWordByWord(guess.toLowerCase());
 
         if (guessedWord.isEmpty()) return ValidWord.NONEXISTENT;
         if (guess.length() > actualWord.getLength() || guess.length() < actualWord.getLength()) return ValidWord.WRONG_LENGTH;
