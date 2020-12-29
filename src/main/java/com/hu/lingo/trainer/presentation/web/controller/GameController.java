@@ -33,8 +33,8 @@ public class GameController {
         if (request.getUsername() == null) throw new MissingParameterException("Username parameter required when performing a turn.");
         if (request.getGuess() == null) throw new MissingParameterException("Guess parameter required when performing a turn.");
 
-        System.out.println(request.getUsername());
-        System.out.println(request.getGuess());
+        Game game = this.gameService.findGame(request.getUsername());
+        
         return null;
     }
 
