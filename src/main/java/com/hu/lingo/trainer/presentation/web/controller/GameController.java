@@ -32,6 +32,6 @@ public class GameController {
 
     // alle highscores ophalen
 
-    // alle games ophalen of alleen alle active games of alle finished?
+    // alle games ophalen of alleen alle + active games of alle finished?
 
 }
