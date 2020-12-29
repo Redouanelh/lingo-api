@@ -34,7 +34,7 @@ public class GameController {
         if (request.getGuess() == null) throw new MissingParameterException("Guess parameter required when performing a turn.");
 
         Game game = this.gameService.findGame(request.getUsername());
-        
+
         return null;
     }
 

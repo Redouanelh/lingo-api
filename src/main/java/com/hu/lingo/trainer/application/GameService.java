@@ -53,4 +53,7 @@ public class GameService extends BaseService<Game> {
         return game.get();
     }
 
+    @Transactional
+    public 
+
 }

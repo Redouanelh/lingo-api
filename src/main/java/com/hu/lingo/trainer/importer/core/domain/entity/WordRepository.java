@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface WordRepository extends JpaRepository<Word, Integer> {
@@ -16,5 +17,7 @@ public interface WordRepository extends JpaRepository<Word, Integer> {
     void truncateTable();
 
     List<Word> getWordsByLength(int length);
+
+    Optional<Word> findWordByWord(String word);
 
 }
