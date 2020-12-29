@@ -16,4 +16,5 @@ public class CreateGameResponse implements Serializable {
     private GameStatus gameStatus;
     private Player player;
     private String message;
+    private String wordProgress;
 }

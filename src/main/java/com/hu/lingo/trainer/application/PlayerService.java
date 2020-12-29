@@ -39,7 +39,7 @@ public class PlayerService extends BaseService<Player> {
     @Transactional
     public Player savePlayer(String username) {
         Optional<Player> player = this.playerRepository.findPlayerByUsername(username);
-        if (player.isEmpty()) throw new PlayerAlreadyExistsException(String.format("Player with username %s already exists! Use a unique username.", username));
+        if (player.isPresent()) throw new PlayerAlreadyExistsException(String.format("Player with username %s already exists! Use a unique username.", username));
 
         Player savedPlayer = this.playerRepository.save(new Player(username));
 

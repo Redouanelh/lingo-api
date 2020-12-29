@@ -12,11 +12,19 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "gameword")
 public class GameWord extends BaseEntity {
 
     @Column
     private String word;
+
+    @Column
+    private String progress;
+
+    public GameWord(String word) {
+        this.word = word;
+        this.progress = word.substring(0, 1) + " _".repeat(word.length()-1) ;
+    }
+
 }

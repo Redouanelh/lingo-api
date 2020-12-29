@@ -33,7 +33,7 @@ public class Game extends BaseEntity {
     @JoinColumn(name = "player_fk")
     private Player player;
 
-    @OneToOne()
+    @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "gameword_fk")
     private GameWord gameWord;
 

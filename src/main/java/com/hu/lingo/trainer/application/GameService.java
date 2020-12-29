@@ -38,7 +38,7 @@ public class GameService extends BaseService<Game> {
 
         Game createdGame = this.gameRepository.save(new Game(player, GameStatus.ACTIVE, gameWord));
         if (createdGame.getId() == null) throw new GameNotSavedException(String.format("Failed to save game for player: %s", username));
-        System.out.println(createdGame.getGameWord().getWord());
+
         return createdGame;
     }
 
