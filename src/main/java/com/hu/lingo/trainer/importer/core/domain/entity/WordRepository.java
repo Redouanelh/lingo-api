@@ -5,6 +5,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface WordRepository extends JpaRepository<Word, Integer> {
 
@@ -12,5 +14,7 @@ public interface WordRepository extends JpaRepository<Word, Integer> {
     @Query (value = "TRUNCATE table word",
             nativeQuery = true)
     void truncateTable();
+
+    List<Word> getWordsByLength(int length);
 
 }

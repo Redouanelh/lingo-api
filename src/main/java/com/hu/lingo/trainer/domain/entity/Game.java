@@ -33,9 +33,14 @@ public class Game extends BaseEntity {
     @JoinColumn(name = "player_fk")
     private Player player;
 
-    public Game(Player player, GameStatus gameStatus) {
+    @OneToOne()
+    @JoinColumn(name = "gameword_fk")
+    private GameWord gameWord;
+
+    public Game(Player player, GameStatus gameStatus, GameWord gameWord) {
         this.player = player;
         this.gameStatus = gameStatus;
+        this.gameWord = gameWord;
     }
 
     public void correctWord() {
