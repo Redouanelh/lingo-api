@@ -2,6 +2,7 @@ package com.hu.lingo.trainer.application;
 
 import com.hu.lingo.trainer.application.error.GameAlreadyExistsException;
 import com.hu.lingo.trainer.application.error.GameNotSavedException;
+import com.hu.lingo.trainer.application.error.NoActiveGameException;
 import com.hu.lingo.trainer.application.error.PlayerNotFoundException;
 import com.hu.lingo.trainer.data.GameRepository;
 import com.hu.lingo.trainer.domain.entity.Game;
@@ -40,6 +41,16 @@ public class GameService extends BaseService<Game> {
         if (createdGame.getId() == null) throw new GameNotSavedException(String.format("Failed to save game for player: %s", username));
 
         return createdGame;
+    }
+
+    @Transactional
+    public Game findGame(String username) {
+        Player player = this.playerService.findPlayerByUsername(username);
+
+        Optional<Game> game = this.gameRepository.findByPlayerAndGameStatus(player, GameStatus.ACTIVE);
+        if (game.isEmpty()) throw new NoActiveGameException(String.format("Player with username %s has no active game running.", username));
+
+        return game.get();
     }
 
 }
