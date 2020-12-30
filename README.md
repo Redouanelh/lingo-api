@@ -11,7 +11,7 @@
 
  ### Request URL
  - *http://localhost:8080*
- - *https://lingo-api.herokuapp.com*
+ - *https://lingo-api.herokuapp.com* (Needs to boot up after some inactivity)
 
 * The game
   * **GET** /api/player/all [Get all players]
