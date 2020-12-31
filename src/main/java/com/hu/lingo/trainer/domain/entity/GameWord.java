@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.util.ArrayList;
 
 @Getter
 @Setter
@@ -24,13 +25,29 @@ public class GameWord extends BaseEntity {
 
     public GameWord(String word) {
         this.word = word;
-        this.progress = word.substring(0, 1) + " _".repeat(word.length()-1) ;
+        this.progress = word.substring(0, 1) + "_".repeat(word.length()-1) ;
     }
 
     public RoundStatus checkTurn(GameWord guess) {
+        StringBuilder checker = new StringBuilder(this.progress);
+        ArrayList<Character> presentCharacters = new ArrayList<>();
+
         for (char c : guess.getWord().toCharArray()) {
-            System.out.println(word.indexOf(c));
+            for (char d : this.word.toCharArray()) {
+                if (this.word.indexOf(c) != -1 && guess.getWord().indexOf(c) == this.word.indexOf(c)) checker.setCharAt(this.word.indexOf(c), c);
+                if (this.word.indexOf(c) != -1 && (guess.getWord().indexOf(c) != this.word.indexOf(c))) presentCharacters.add(c);
+            }
         }
+
+        this.progress = checker.toString();
+
+        // TurnResponse
+        // dus ipv dit alles hieronder maak je gwn die turnObject aan en set je de juiste RoundStatus + de presentCharacters.
+        // DIT RETURNEN!!!
+
+//        if (checker.toString().equals(this.word)) return RoundStatus.CORRECT;
+//        if (presentCharacters.isEmpty()) return RoundStatus.ABSENT;
+//        if (!presentCharacters.isEmpty()) return RoundStatus.PRESENT;
 
         return null;
     }
