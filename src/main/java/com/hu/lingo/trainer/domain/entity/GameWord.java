@@ -28,7 +28,7 @@ public class GameWord extends BaseEntity {
         this.progress = word.substring(0, 1) + "_".repeat(word.length()-1) ;
     }
 
-    public RoundStatus checkTurn(GameWord guess) {
+    public TurnResponse checkTurn(GameWord guess) {
         StringBuilder checker = new StringBuilder(this.progress);
         ArrayList<Character> presentCharacters = new ArrayList<>();
 
@@ -41,15 +41,14 @@ public class GameWord extends BaseEntity {
 
         this.progress = checker.toString();
 
-        // TurnResponse
-        // dus ipv dit alles hieronder maak je gwn die turnObject aan en set je de juiste RoundStatus + de presentCharacters.
-        // DIT RETURNEN!!!
+        if (this.progress.equals(this.word)) return new TurnResponse(RoundStatus.CORRECT, presentCharacters);
+        if (!(this.progress.equals(this.word)) && presentCharacters.isEmpty()) return new TurnResponse(RoundStatus.PRESENT_AT_CORRECT_INDEX, presentCharacters);
 
-//        if (checker.toString().equals(this.word)) return RoundStatus.CORRECT;
-//        if (presentCharacters.isEmpty()) return RoundStatus.ABSENT;
-//        if (!presentCharacters.isEmpty()) return RoundStatus.PRESENT;
-
-        return null;
+        if (presentCharacters.isEmpty()) {
+            return new TurnResponse(RoundStatus.ABSENT, presentCharacters);
+        } else {
+            return new TurnResponse(RoundStatus.PRESENT, presentCharacters);
+        }
     }
 
 }

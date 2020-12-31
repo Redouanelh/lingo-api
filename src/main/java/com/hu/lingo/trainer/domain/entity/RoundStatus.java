@@ -4,6 +4,7 @@ public enum RoundStatus {
     TIME_UP,
     ABSENT,
     PRESENT,
+    PRESENT_AT_CORRECT_INDEX,
     CORRECT,
-    ROUND_LIMIT
+    ROUND_LIMIT,
 }
