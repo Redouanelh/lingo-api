@@ -4,10 +4,7 @@ import com.hu.lingo.trainer.application.error.GameAlreadyExistsException;
 import com.hu.lingo.trainer.application.error.GameNotSavedException;
 import com.hu.lingo.trainer.application.error.NoActiveGameException;
 import com.hu.lingo.trainer.data.GameRepository;
-import com.hu.lingo.trainer.domain.entity.Game;
-import com.hu.lingo.trainer.domain.entity.GameStatus;
-import com.hu.lingo.trainer.domain.entity.GameWord;
-import com.hu.lingo.trainer.domain.entity.Player;
+import com.hu.lingo.trainer.domain.entity.*;
 import com.hu.lingo.trainer.importer.infrastructure.driver.controller.WordImportController;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,7 +33,7 @@ public class GameService extends BaseService<Game> {
         Optional<Game> game = this.gameRepository.findByPlayerAndGameStatus(player, GameStatus.ACTIVE);
         if (game.isPresent()) throw new GameAlreadyExistsException(String.format("Player with username %s already has an active game running.", username));
 
-        Game createdGame = this.gameRepository.save(new Game(player, GameStatus.ACTIVE, gameWord));
+        Game createdGame = this.gameRepository.save(new Game(player, GameStatus.ACTIVE, new Round(gameWord)));
         if (createdGame.getId() == null) throw new GameNotSavedException(String.format("Failed to save game for player: %s", username));
 
         return createdGame;
@@ -54,7 +51,7 @@ public class GameService extends BaseService<Game> {
 
     @Transactional //STRING MOET HIER WEG JWZ DENK HIEROVER NA
     public String performTurn(Game game, GameWord guess) {
-        Boolean validGuess = this.wordImportController.guessValidator(game.getGameWord().getWord(), guess.getWord());
+        Boolean validGuess = this.wordImportController.guessValidator(game.getRound().getGameWord().getWord(), guess.getWord());
         if (validGuess) {
             System.out.println("Perform turn...");
         }

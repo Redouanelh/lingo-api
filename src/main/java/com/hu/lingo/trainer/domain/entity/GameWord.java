@@ -16,10 +16,10 @@ import javax.persistence.Table;
 @Table(name = "gameword")
 public class GameWord extends BaseEntity {
 
-    @Column
+    @Column(name = "word")
     private String word;
 
-    @Column
+    @Column(name = "progress")
     private String progress;
 
     public GameWord(String word) {

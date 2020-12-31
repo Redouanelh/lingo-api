@@ -17,9 +17,6 @@ import java.sql.Date;
 @Table(name = "game")
 public class Game extends BaseEntity {
 
-    @Column(name = "round")
-    private int gameRound = 1;
-
     @Column(name = "score")
     private int gameScore = 0;
 
@@ -34,21 +31,13 @@ public class Game extends BaseEntity {
     private Player player;
 
     @OneToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "gameword_fk")
-    private GameWord gameWord;
+    @JoinColumn(name = "round_fk")
+    private Round round;
 
-    public Game(Player player, GameStatus gameStatus, GameWord gameWord) {
+    public Game(Player player, GameStatus gameStatus, Round round) {
         this.player = player;
         this.gameStatus = gameStatus;
-        this.gameWord = gameWord;
-    }
-
-    public void correctWord() {
-        this.gameScore += 1;
-    }
-
-    public void endGame() {
-        this.gameStatus = GameStatus.FINISHED;
+        this.round = round;
     }
 
 }

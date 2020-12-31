@@ -26,7 +26,7 @@ public class GameController {
         if (request.getUsername() == null) throw new MissingParameterException("Username parameter required when starting a game.");
 
         Game game = this.gameService.createGame(request.getUsername());
-        return ResponseEntity.ok(new CreateGameResponse(game.getId(), game.getGameRound(), game.getGameScore(), game.getGameStatus(), game.getPlayer(), String.format("Game was successfully created. The word has %s letters. You have 10 seconds for a guess, goodluck!", game.getGameWord().getWord().length()), game.getGameWord().getProgress()));
+        return ResponseEntity.ok(new CreateGameResponse(game.getId(), game.getRound().getRoundNumber(), game.getGameScore(), game.getGameStatus(), game.getPlayer(), String.format("Game was successfully created. The word has %s letters. You have 10 seconds for a guess, goodluck!", game.getRound().getGameWord().getWord().length()), game.getRound().getGameWord().getProgress()));
     }
 
     @PutMapping("/turn")
