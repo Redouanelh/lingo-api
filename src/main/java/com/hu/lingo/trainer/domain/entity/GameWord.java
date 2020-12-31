@@ -35,18 +35,28 @@ public class GameWord extends BaseEntity {
         for (char c : guess.getWord().toCharArray()) {
             for (char d : this.word.toCharArray()) {
                 if (this.word.indexOf(c) != -1 && guess.getWord().indexOf(c) == this.word.indexOf(c)) checker.setCharAt(this.word.indexOf(c), c);
-                if (this.word.indexOf(c) != -1 && (guess.getWord().indexOf(c) != this.word.indexOf(c))) presentCharacters.add(c);
+                if (this.word.indexOf(c) != -1 && (guess.getWord().indexOf(c) != this.word.indexOf(c))) {
+                    if (presentCharacters.contains(c)) break;
+                    presentCharacters.add(c);
+                }
             }
         }
 
-        this.progress = checker.toString();
+        if (checker.toString().equals(this.word)) {
+            this.progress = checker.toString();
+            return new TurnResponse(RoundStatus.CORRECT, presentCharacters);
+        }
 
-        if (this.progress.equals(this.word)) return new TurnResponse(RoundStatus.CORRECT, presentCharacters);
-        if (!(this.progress.equals(this.word)) && presentCharacters.isEmpty()) return new TurnResponse(RoundStatus.PRESENT_AT_CORRECT_INDEX, presentCharacters);
+        if (!(checker.toString().equals(this.progress)) && presentCharacters.isEmpty()) {
+            this.progress = checker.toString();
+            return new TurnResponse(RoundStatus.PRESENT_AT_CORRECT_INDEX, presentCharacters);
+        }
 
         if (presentCharacters.isEmpty()) {
+            this.progress = checker.toString();
             return new TurnResponse(RoundStatus.ABSENT, presentCharacters);
         } else {
+            this.progress = checker.toString();
             return new TurnResponse(RoundStatus.PRESENT, presentCharacters);
         }
     }

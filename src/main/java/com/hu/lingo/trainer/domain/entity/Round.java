@@ -30,16 +30,20 @@ public class Round extends BaseEntity {
     }
 
     public TurnResponse performTurn(GameWord guess) {
-//        if (this.roundNumber >= 5) return RoundStatus.ROUND_LIMIT;
+        if (this.roundNumber >= 5) return new TurnResponse(RoundStatus.ROUND_LIMIT, null);
 
         // TIME LIMIT... Return hier die status
 
 //        this.tries += 1;
 //        this.roundNumber += 1;
-        System.out.println(this.gameWord.checkTurn(guess).getRoundStatus());
-        for(char c : this.gameWord.checkTurn(guess).getPresentCharacters()) {
+
+        TurnResponse turnResponse = this.gameWord.checkTurn(guess);
+        System.out.println(turnResponse.getRoundStatus());
+
+        for(Character c : turnResponse.getPresentCharacters()) {
             System.out.println(c);
         }
+
         return this.gameWord.checkTurn(guess);
     }
 }
