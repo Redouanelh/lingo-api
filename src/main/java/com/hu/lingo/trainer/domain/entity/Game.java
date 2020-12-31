@@ -40,4 +40,12 @@ public class Game extends BaseEntity {
         this.round = round;
     }
 
+    public void performGuess(GameWord gameWord) {
+
+    }
+
+    public void endGame() {
+        this.gameStatus = GameStatus.FINISHED;
+    }
+
 }
