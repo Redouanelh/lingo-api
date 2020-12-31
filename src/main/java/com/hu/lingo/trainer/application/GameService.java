@@ -53,8 +53,7 @@ public class GameService extends BaseService<Game> {
     public String performTurn(Game game, GameWord guess) {
         Boolean validGuess = this.wordImportController.guessValidator(game.getRound().getGameWord().getWord(), guess.getWord());
         if (validGuess) {
-
-            System.out.println("Perform turn...");
+            System.out.println(game.performTurn(guess));
         }
 
         return null;

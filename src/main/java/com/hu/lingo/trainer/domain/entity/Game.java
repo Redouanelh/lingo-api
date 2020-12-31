@@ -40,8 +40,13 @@ public class Game extends BaseEntity {
         this.round = round;
     }
 
-    public void performGuess(GameWord gameWord) {
+    public RoundStatus performTurn(GameWord guess) {
+        RoundStatus roundStatus = this.round.performTurn(guess);
 
+//        if (roundStatus.equals(RoundStatus.CORRECT)) {
+//            this.gameScore += 1;
+//        }
+        return roundStatus;
     }
 
     public void endGame() {

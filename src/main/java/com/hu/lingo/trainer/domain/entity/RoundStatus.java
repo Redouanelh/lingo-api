@@ -1,8 +1,9 @@
 package com.hu.lingo.trainer.domain.entity;
 
 public enum RoundStatus {
-    TIMEUP,
+    TIME_UP,
     ABSENT,
     PRESENT,
-    CORRECT
+    CORRECT,
+    ROUND_LIMIT
 }

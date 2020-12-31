@@ -27,4 +27,12 @@ public class GameWord extends BaseEntity {
         this.progress = word.substring(0, 1) + " _".repeat(word.length()-1) ;
     }
 
+    public RoundStatus checkTurn(GameWord guess) {
+        for (char c : guess.getWord().toCharArray()) {
+            System.out.println(word.indexOf(c));
+        }
+
+        return null;
+    }
+
 }

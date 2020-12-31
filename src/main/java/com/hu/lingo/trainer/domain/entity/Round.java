@@ -28,4 +28,15 @@ public class Round extends BaseEntity {
     public Round(GameWord gameWord) {
         this.gameWord = gameWord;
     }
+
+    public RoundStatus performTurn(GameWord guess) {
+//        if (this.roundNumber >= 5) return RoundStatus.ROUND_LIMIT;
+
+        // TIME LIMIT... Return hier die status
+
+//        this.tries += 1;
+//        this.roundNumber += 1;
+
+        return this.gameWord.checkTurn(guess);
+    }
 }
