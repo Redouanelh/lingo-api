@@ -36,7 +36,7 @@ public class GameWord extends BaseEntity {
             for (char d : this.word.toCharArray()) {
                 if (this.word.indexOf(c) != -1 && guess.getWord().indexOf(c) == this.word.indexOf(c)) checker.setCharAt(this.word.indexOf(c), c);
                 if (this.word.indexOf(c) != -1 && (guess.getWord().indexOf(c) != this.word.indexOf(c))) {
-                    if (presentCharacters.contains(c)) break;
+                    if (presentCharacters.contains(c)) break; // only add present character once.
                     presentCharacters.add(c);
                 }
             }

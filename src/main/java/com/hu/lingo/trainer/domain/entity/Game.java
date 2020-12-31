@@ -43,7 +43,7 @@ public class Game extends BaseEntity {
     public TurnResponse performTurn(GameWord guess) {
         TurnResponse turnResponse = this.round.performTurn(guess);
 
-//        if (roundStatus.equals(RoundStatus.CORRECT)) {
+//        if (turnResponse.getRoundStatus().equals(RoundStatus.CORRECT)) {
 //            this.gameScore += 1;
 //        }
         return turnResponse;
