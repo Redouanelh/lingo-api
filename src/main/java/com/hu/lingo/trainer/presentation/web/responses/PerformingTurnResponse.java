@@ -1,7 +1,7 @@
 package com.hu.lingo.trainer.presentation.web.responses;
 
 import com.hu.lingo.trainer.domain.entity.GameStatus;
-import com.hu.lingo.trainer.domain.entity.Player;
+import com.hu.lingo.trainer.domain.entity.TurnResponse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -9,12 +9,11 @@ import java.io.Serializable;
 
 @Getter
 @AllArgsConstructor
-public class CreateGameResponse implements Serializable {
-    private int gameId;
+public class PerformingTurnResponse implements Serializable {
     private int gameRound;
+    private int tries;
     private int gameScore;
     private GameStatus gameStatus;
-    private Player player;
-    private String message;
     private String wordProgress;
+    private TurnResponse turn;
 }
