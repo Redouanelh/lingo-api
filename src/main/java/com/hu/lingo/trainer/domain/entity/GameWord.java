@@ -44,20 +44,20 @@ public class GameWord extends BaseEntity {
 
         if (checker.toString().equals(this.word)) {
             this.progress = checker.toString();
-            return new TurnResponse(RoundStatus.CORRECT, presentCharacters);
+            return new TurnResponse(RoundStatus.CORRECT, presentCharacters, String.format("Your try is correct! The word was: %s. You gained 1 point! Get ready for the next round.", this.word));
         }
 
         if (!(checker.toString().equals(this.progress)) && presentCharacters.isEmpty()) {
             this.progress = checker.toString();
-            return new TurnResponse(RoundStatus.PRESENT_AT_CORRECT_INDEX, presentCharacters);
+            return new TurnResponse(RoundStatus.PRESENT_AT_CORRECT_INDEX, presentCharacters, "Your try has characters at the correct spot, goodjob!");
         }
 
         if (presentCharacters.isEmpty()) {
             this.progress = checker.toString();
-            return new TurnResponse(RoundStatus.ABSENT, presentCharacters);
+            return new TurnResponse(RoundStatus.ABSENT, presentCharacters, "Your try has no present characters!");
         } else {
             this.progress = checker.toString();
-            return new TurnResponse(RoundStatus.PRESENT, presentCharacters);
+            return new TurnResponse(RoundStatus.PRESENT, presentCharacters, "Your try has present characters, but at the wrong spot!");
         }
     }
 

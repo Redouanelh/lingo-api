@@ -6,6 +6,7 @@ import com.hu.lingo.trainer.application.error.NoActiveGameException;
 import com.hu.lingo.trainer.data.GameRepository;
 import com.hu.lingo.trainer.domain.entity.*;
 import com.hu.lingo.trainer.importer.infrastructure.driver.controller.WordImportController;
+import com.hu.lingo.trainer.presentation.web.responses.PerformingTurnResponse;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -49,16 +50,25 @@ public class GameService extends BaseService<Game> {
         return game.get();
     }
 
-    @Transactional //STRING MOET HIER WEG JWZ DENK HIEROVER NA
-    public String performTurn(Game game, GameWord guess) {
-        Boolean validGuess = this.wordImportController.guessValidator(game.getRound().getGameWord().getWord(), guess.getWord());
-        if (validGuess) {
-            game.performTurn(guess);
-            game.setTimeUp(false); // Resetting timeUp attribute
+    @Transactional
+    public PerformingTurnResponse performTurn(Game game, GameWord guess) {
+        this.wordImportController.guessValidator(game.getRound().getGameWord().getWord(), guess.getWord());
 
+        TurnResponse turnResponse = game.performTurn(guess);
+
+        // New random word for the next round.
+        if (turnResponse.getRoundStatus().equals(RoundStatus.CORRECT)) {
+            int gameWordLength = game.getRound().getGameWord().getWord().length();
+            GameWord newGameWord = null;
+
+            if (gameWordLength == 5) newGameWord = new GameWord(this.wordImportController.randomWord(6)); // Previous was 5 letters, now 6.
+            if (gameWordLength == 6) newGameWord = new GameWord(this.wordImportController.randomWord(7)); // Previous was 6 letters, now 7.
+            if (gameWordLength == 7) newGameWord = new GameWord(this.wordImportController.randomWord(5)); // Previous was 7 letters, now 5.
+
+            game.getRound().setGameWord(newGameWord);
         }
 
-        return null;
+        return new PerformingTurnResponse(game.getRound().getRoundNumber(), game.getRound().getTries(), game.getGameScore(), game.getGameStatus(), game.getRound().getGameWord().getProgress(), turnResponse);
     }
 
 }

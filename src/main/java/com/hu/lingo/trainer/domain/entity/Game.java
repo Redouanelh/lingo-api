@@ -20,7 +20,7 @@ import java.util.Calendar;
 public class Game extends BaseEntity {
 
     @Transient
-    private boolean timeUp;
+    private boolean timeUp = false;
 
     @Column(name = "lastMove")
     private Timestamp lastMove;
@@ -52,20 +52,29 @@ public class Game extends BaseEntity {
 
     public TurnResponse performTurn(GameWord guess) {
         long timer = this.getTimestampDifferenceInSeconds(new Timestamp(System.currentTimeMillis()), this.lastMove);
-
         if (timer > 10) this.timeUp = true;
 
-        // if timelimt blabla true..doe tries +1 en dan return TIME_UP jwz en zet in message ook ja je bent nu op beurt ...
-        // aan het einde van een beurt elke keer weer die timeboolean op false zetten!!! Doe dit in gameservice, dus nadat een
-        // game.performturn is gedaan. Dan heb je gelijk alle wegen afgedekt.
+        this.lastMove = new Timestamp(System.currentTimeMillis()); // Update the lastMove timestamp
+
+        if (this.round.getTries() >= 5) {
+            this.gameStatus = GameStatus.FINISHED;
+            return new TurnResponse(RoundStatus.ROUND_LIMIT, null, "You have reached the maximum amount of tries: 5. Game has finished. You can find all your game scores using the Github documentation!");
+        }
+
+        if (this.timeUp) {
+            this.timeUp = false; // Resetting timeUp attribute
+
+            this.getRound().addTry();
+            return new TurnResponse(RoundStatus.TIME_UP, null, "You failed to answer within 10 seconds! This try will not count for your progress, but will be added as an official try.");
+        }
 
         TurnResponse turnResponse = this.round.performTurn(guess);
 
-//        if (turnResponse.getRoundStatus().equals(RoundStatus.CORRECT)) {
-//            this.gameScore += 1;
-//        }
-
-        this.lastMove = new Timestamp(System.currentTimeMillis()); // Update the lastMove timestamp
+        if (turnResponse.getRoundStatus().equals(RoundStatus.ROUND_LIMIT)) return turnResponse;
+        if (turnResponse.getRoundStatus().equals(RoundStatus.CORRECT)) {
+            this.round.clearTries();
+            this.gameScore += 1;
+        }
 
         return turnResponse;
     }

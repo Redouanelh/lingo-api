@@ -7,6 +7,7 @@ import com.hu.lingo.trainer.domain.entity.GameWord;
 import com.hu.lingo.trainer.presentation.web.requests.CreateGameRequest;
 import com.hu.lingo.trainer.presentation.web.requests.CreateTurnRequest;
 import com.hu.lingo.trainer.presentation.web.responses.CreateGameResponse;
+import com.hu.lingo.trainer.presentation.web.responses.PerformingTurnResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,14 +31,15 @@ public class GameController {
     }
 
     @PutMapping("/turn")
-    public ResponseEntity<?> takeTurn(@RequestBody CreateTurnRequest request) {
-        if (request.getUsername() == null) throw new MissingParameterException("Username parameter required when performing a turn.");
-        if (request.getGuess() == null) throw new MissingParameterException("Guess parameter required when performing a turn.");
+    public ResponseEntity<PerformingTurnResponse> takeTurn(@RequestBody CreateTurnRequest request) {
+        if (request.getUsername() == null)
+            throw new MissingParameterException("Username parameter required when performing a turn.");
+        if (request.getGuess() == null)
+            throw new MissingParameterException("Guess parameter required when performing a turn.");
 
         Game game = this.gameService.findGame(request.getUsername());
-        String testTurn = this.gameService.performTurn(game, new GameWord(request.getGuess())); // DEZE METHODE MOET ANDERS JWZ IPV String
 
-        return null;
+        return ResponseEntity.ok(this.gameService.performTurn(game, new GameWord(request.getGuess())));
     }
 
     // alle highscores ophalen

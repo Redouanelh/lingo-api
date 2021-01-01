@@ -11,4 +11,5 @@ import java.util.ArrayList;
 public class TurnResponse implements Serializable {
     RoundStatus roundStatus;
     ArrayList<Character> presentCharacters;
+    String message;
 }

@@ -33,11 +33,19 @@ public class Round extends BaseEntity {
     }
 
     public TurnResponse performTurn(GameWord guess) {
-        if (this.roundNumber >= 5) return new TurnResponse(RoundStatus.ROUND_LIMIT, null);
+        TurnResponse turnResponse = this.gameWord.checkTurn(guess);
+        this.addTry();
 
-        // this.tries += 1;
-        // this.roundNumber += 1;
+        if (turnResponse.getRoundStatus().equals(RoundStatus.CORRECT)) this.roundNumber += 1;
 
-        return this.gameWord.checkTurn(guess);
+        return turnResponse;
+    }
+
+    public void addTry() {
+        this.tries += 1;
+    }
+
+    public void clearTries() {
+        this.tries = 0;
     }
 }
