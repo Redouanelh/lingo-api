@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 @Getter
 @Setter
@@ -31,8 +34,6 @@ public class Round extends BaseEntity {
 
     public TurnResponse performTurn(GameWord guess) {
         if (this.roundNumber >= 5) return new TurnResponse(RoundStatus.ROUND_LIMIT, null);
-
-        // if (...) return new TurnResponse(RoundStatus.TIME_UP, null);
 
         // this.tries += 1;
         // this.roundNumber += 1;

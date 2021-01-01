@@ -54,6 +54,8 @@ public class GameService extends BaseService<Game> {
         Boolean validGuess = this.wordImportController.guessValidator(game.getRound().getGameWord().getWord(), guess.getWord());
         if (validGuess) {
             game.performTurn(guess);
+            game.setTimeUp(false); // Resetting timeUp attribute
+
         }
 
         return null;
