@@ -13,4 +13,5 @@ import java.util.Optional;
 public interface GameRepository extends JpaRepository<Game, Integer> {
     Optional<Game> findByPlayerAndGameStatus(Player player, GameStatus gameStatus);
     List<Game> findAllByGameStatusAndPlayer(GameStatus gameStatus, Player player);
+    List<Game> findAllByPlayer(Player player);
 }

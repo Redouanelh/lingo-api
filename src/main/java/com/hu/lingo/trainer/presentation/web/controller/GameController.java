@@ -3,6 +3,7 @@ package com.hu.lingo.trainer.presentation.web.controller;
 import com.hu.lingo.trainer.application.GameService;
 import com.hu.lingo.trainer.application.error.MissingParameterException;
 import com.hu.lingo.trainer.application.error.NoFinishedGamesException;
+import com.hu.lingo.trainer.application.error.NoGamesException;
 import com.hu.lingo.trainer.domain.entity.Game;
 import com.hu.lingo.trainer.domain.entity.GameWord;
 import com.hu.lingo.trainer.presentation.web.requests.CreateGameRequest;
@@ -22,6 +23,15 @@ public class GameController {
 
     public GameController(GameService gameService) {
         this.gameService = gameService;
+    }
+
+    @GetMapping("/all/{username}")
+    public List<Game> allGames(@PathVariable String username) {
+        List<Game> games = this.gameService.allGames(username);
+
+        if (games.isEmpty()) throw new NoGamesException(String.format("Player with username %s has no games.", username));
+
+        return games;
     }
 
     @GetMapping("/finished/{username}")
@@ -53,9 +63,5 @@ public class GameController {
 
         return ResponseEntity.ok(this.gameService.performTurn(game, new GameWord(request.getGuess())));
     }
-
-    // alle highscores ophalen
-
-    // alle games ophalen of alleen alle + active games of alle finished?
 
 }

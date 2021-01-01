@@ -28,6 +28,12 @@ public class GameService extends BaseService<Game> {
     }
 
     @Transactional
+    public List<Game> allGames(String username) {
+        Player player = this.playerService.findPlayerByUsername(username);
+        return this.gameRepository.findAllByPlayer(player);
+    }
+
+    @Transactional
     public List<Game> allFinishedGames(String username) {
         Player player = this.playerService.findPlayerByUsername(username);
         return this.gameRepository.findAllByGameStatusAndPlayer(GameStatus.FINISHED, player);
