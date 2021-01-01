@@ -10,6 +10,7 @@ import com.hu.lingo.trainer.presentation.web.responses.PerformingTurnResponse;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,6 +25,12 @@ public class GameService extends BaseService<Game> {
         this.gameRepository = gameRepository;
         this.playerService = playerService;
         this.wordImportController = wordImportController;
+    }
+
+    @Transactional
+    public List<Game> allFinishedGames(String username) {
+        Player player = this.playerService.findPlayerByUsername(username);
+        return this.gameRepository.findAllByGameStatusAndPlayer(GameStatus.FINISHED, player);
     }
 
     @Transactional

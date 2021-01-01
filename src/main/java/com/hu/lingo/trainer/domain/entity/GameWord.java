@@ -44,7 +44,7 @@ public class GameWord extends BaseEntity {
 
         if (checker.toString().equals(this.word)) {
             this.progress = checker.toString();
-            return new TurnResponse(RoundStatus.CORRECT, presentCharacters, String.format("Your try is correct! The word was: %s. You gained 1 point! Get ready for the next round.", this.word));
+            return new TurnResponse(RoundStatus.CORRECT, presentCharacters, String.format("Your try is correct! The word was: %s. You gained 1 point! The next round has started.", this.word));
         }
 
         if (!(checker.toString().equals(this.progress)) && presentCharacters.isEmpty()) {
