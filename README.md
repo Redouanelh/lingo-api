@@ -16,6 +16,7 @@
 * The game
   * **GET** /api/player/all [Get all players]
   * **GET** /api/player/{username} [Get one player]
+  * **GET** /api/game/finished/{username} [Get all finished games from player]
   * **POST** /api/player/ [JSON body parameter(s): 'username': 'xxx'] [Register as player]
   * **POST** /api/game/start/ [JSON body parameter(s): 'username': 'xxx'] [Start a new game]
   * **PUT** /api/game/turn/ [JSON body parameter(s): 'username': 'xxx', 'guess': 'xxx'] [Perform a turn]
