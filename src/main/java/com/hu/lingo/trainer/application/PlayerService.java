@@ -1,5 +1,6 @@
 package com.hu.lingo.trainer.application;
 
+import com.hu.lingo.trainer.application.error.PlayerAlreadyExistsException;
 import com.hu.lingo.trainer.application.error.PlayerNotFoundException;
 import com.hu.lingo.trainer.application.error.PlayerNotSavedException;
 import com.hu.lingo.trainer.data.PlayerRepository;
@@ -37,6 +38,9 @@ public class PlayerService extends BaseService<Player> {
 
     @Transactional
     public Player savePlayer(String username) {
+        Optional<Player> player = this.playerRepository.findPlayerByUsername(username);
+        if (player.isPresent()) throw new PlayerAlreadyExistsException(String.format("Player with username %s already exists! Use a unique username.", username));
+
         Player savedPlayer = this.playerRepository.save(new Player(username));
 
         /* If fails to save player in database, application returns http CONFLICT status with written message */
