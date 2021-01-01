@@ -1,7 +1,6 @@
 package com.hu.lingo.trainer.presentation.web.controller;
 
 import com.hu.lingo.trainer.application.GameService;
-import com.hu.lingo.trainer.application.PlayerService;
 import com.hu.lingo.trainer.application.error.MissingParameterException;
 import com.hu.lingo.trainer.application.error.NoFinishedGamesException;
 import com.hu.lingo.trainer.domain.entity.Game;
