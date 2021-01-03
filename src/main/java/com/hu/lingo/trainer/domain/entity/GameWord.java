@@ -31,15 +31,28 @@ public class GameWord extends BaseEntity {
         StringBuilder checker = new StringBuilder(this.progress);
         ArrayList<Character> presentCharacters = new ArrayList<>();
 
-        for (char c : guess.getWord().toCharArray()) {
-            for (char d : this.word.toCharArray()) {
-                if (this.word.indexOf(c) != -1 && guess.getWord().indexOf(c) == this.word.indexOf(c)) checker.setCharAt(this.word.indexOf(c), c);
-                if (this.word.indexOf(c) != -1 && (guess.getWord().indexOf(c) != this.word.indexOf(c))) {
-                    if (presentCharacters.contains(c)) break; // only add present character once.
-                    presentCharacters.add(c);
-                }
+        for (int i = 0; i < this.word.length(); i++) {
+            if (this.word.toCharArray()[i] == guess.getWord().toCharArray()[i]) checker.setCharAt(i, this.word.toCharArray()[i]);
+            if (this.word.toCharArray()[i] != guess.getWord().toCharArray()[i] && this.word.indexOf(guess.getWord().toCharArray()[i]) != -1) {
+                if (presentCharacters.contains(guess.getWord().toCharArray()[i])) break; // only add present character once.
+                presentCharacters.add(guess.getWord().toCharArray()[i]);
             }
         }
+
+
+//        for (char c : guess.getWord().toCharArray()) {
+//            for (char d : this.word.toCharArray()) {
+//                if (this.word.indexOf(c) != -1 && guess.getWord().indexOf(c) == this.word.indexOf(c)) checker.setCharAt(this.word.indexOf(c), c);
+//                if (guess.getWord().indexOf(c) == checker.toString().indexOf(c)) {
+//                    System.out.println(c);
+//                    break; // Same letter in one word.
+//                }
+//                if (this.word.indexOf(c) != -1 && (guess.getWord().indexOf(c) != this.word.indexOf(c))) {
+//                    if (presentCharacters.contains(c)) break; // only add present character once.
+//                    presentCharacters.add(c);
+//                }
+//            }
+//        }
 
         if (checker.toString().equals(this.word)) {
             this.progress = checker.toString();
