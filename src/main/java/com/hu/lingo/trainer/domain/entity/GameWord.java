@@ -39,21 +39,6 @@ public class GameWord extends BaseEntity {
             }
         }
 
-
-//        for (char c : guess.getWord().toCharArray()) {
-//            for (char d : this.word.toCharArray()) {
-//                if (this.word.indexOf(c) != -1 && guess.getWord().indexOf(c) == this.word.indexOf(c)) checker.setCharAt(this.word.indexOf(c), c);
-//                if (guess.getWord().indexOf(c) == checker.toString().indexOf(c)) {
-//                    System.out.println(c);
-//                    break; // Same letter in one word.
-//                }
-//                if (this.word.indexOf(c) != -1 && (guess.getWord().indexOf(c) != this.word.indexOf(c))) {
-//                    if (presentCharacters.contains(c)) break; // only add present character once.
-//                    presentCharacters.add(c);
-//                }
-//            }
-//        }
-
         if (checker.toString().equals(this.word)) {
             this.progress = checker.toString();
             return new TurnResponse(RoundStatus.CORRECT, presentCharacters, String.format("Your try is correct! The word was: %s. You gained 1 point! The next round has started.", this.word));
