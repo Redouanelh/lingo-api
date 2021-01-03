@@ -18,6 +18,7 @@
   * **GET** /api/player/{username} [Get one player]
   * **POST** /api/player/ [JSON body parameter(s): 'username': 'xxx'] [Register as player]
   <br/>---
+  * **GET** /api/game/highscores [Get top 5 highest reached scores]
   * **GET** /api/game/all/{username} [Get all games from player]
   * **GET** /api/game/finished/{username} [Get all finished games from player]
   * **POST** /api/game/start/ [JSON body parameter(s): 'username': 'xxx'] [Start a new game]
