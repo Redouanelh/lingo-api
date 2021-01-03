@@ -6,10 +6,12 @@ import com.hu.lingo.trainer.application.error.NoActiveGameException;
 import com.hu.lingo.trainer.data.GameRepository;
 import com.hu.lingo.trainer.domain.entity.*;
 import com.hu.lingo.trainer.importer.infrastructure.driver.controller.WordImportController;
+import com.hu.lingo.trainer.presentation.web.responses.HighscoreResponse;
 import com.hu.lingo.trainer.presentation.web.responses.PerformingTurnResponse;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +27,18 @@ public class GameService extends BaseService<Game> {
         this.gameRepository = gameRepository;
         this.playerService = playerService;
         this.wordImportController = wordImportController;
+    }
+
+    @Transactional
+    public List<HighscoreResponse> highestScores() {
+        List<Game> games = this.gameRepository.findHighscores();
+        List<HighscoreResponse> highscores = new ArrayList<>();
+
+        for (Game game : games) {
+            highscores.add(new HighscoreResponse(game.getGameScore(), game.getRound().getRoundNumber(), game.getPlayer(), game.getCreated_at(), game.getRound().getGameWord().getWord()));
+        }
+
+        return highscores;
     }
 
     @Transactional
