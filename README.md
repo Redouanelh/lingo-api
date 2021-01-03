@@ -1,7 +1,7 @@
 # lingo-api VKBEP 2020/2021
  Lingo Api made by Redouan el Hidraoui
  
- The main branch will always be deployed on push if the build passes (Github Action). If the build does NOT pass, the main branch will not deploy. 
+ The main branch will always be deployed on push if the build passes (Github Action). If the build does NOT pass, the main branch will not redeploy. 
 
 [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/dashboard?id=Redouanelh_lingo-api)
 
