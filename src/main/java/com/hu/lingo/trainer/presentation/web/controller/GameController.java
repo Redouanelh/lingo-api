@@ -9,6 +9,7 @@ import com.hu.lingo.trainer.domain.entity.GameWord;
 import com.hu.lingo.trainer.presentation.web.requests.CreateGameRequest;
 import com.hu.lingo.trainer.presentation.web.requests.CreateTurnRequest;
 import com.hu.lingo.trainer.presentation.web.responses.CreateGameResponse;
+import com.hu.lingo.trainer.presentation.web.responses.HighscoreResponse;
 import com.hu.lingo.trainer.presentation.web.responses.PerformingTurnResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +24,11 @@ public class GameController {
 
     public GameController(GameService gameService) {
         this.gameService = gameService;
+    }
+
+    @GetMapping("/highscores") // Top 5 highest scores
+    public List<HighscoreResponse> highestScores() {
+        return this.gameService.highestScores();
     }
 
     @GetMapping("/all/{username}")
