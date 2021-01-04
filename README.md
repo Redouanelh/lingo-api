@@ -1,6 +1,6 @@
 # lingo-api VKBEP 2020/2021
  Lingo Api made by Redouan el Hidraoui
- Hogeschool Utrecht
+ <br>Hogeschool Utrecht
  
  The main branch will always be deployed on push if the build passes (Github Action). If the build does NOT pass, the main branch will not redeploy. 
 
